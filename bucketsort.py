@@ -48,17 +48,18 @@ def bucketSort(array):
         sorted_array.extend(bucket[i])
 
     return sorted_array
-
-# example test cases:
-
-# testing with integers
-int_array = [1, 20, 23, 32, 40, 11, 5, 8]
-sorted_int_array = bucketSort(int_array)
-print("Sorted Integer Array is: ")
-print(sorted_int_array)
-
-# testing with decimals
-decimal_array = [0.42, 0.32, 0.33, 0.52, 0.37, 0.47, 0.51]
-sorted_decimal_array = bucketSort(decimal_array)
-print("Sorted Decimal Array is: ")
-print(sorted_decimal_array)
+    
+if __name__ == "__main__":
+    # example test cases:
+    
+    # testing with integers
+    int_array = [1, 20, 23, 32, 40, 11, 5, 8]
+    sorted_int_array = bucketSort(int_array)
+    print("Sorted Integer Array is: ")
+    print(sorted_int_array)
+    
+    # testing with decimals
+    decimal_array = [0.42, 0.32, 0.33, 0.52, 0.37, 0.47, 0.51]
+    sorted_decimal_array = bucketSort(decimal_array)
+    print("Sorted Decimal Array is: ")
+    print(sorted_decimal_array)
