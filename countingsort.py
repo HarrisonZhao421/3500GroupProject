@@ -1,15 +1,17 @@
 ''' 
 *** COUNTING-SORT ***
-Explanation:
 
 Steps: 
     - Find the MAX value of the input array (input_arr)
     - Create a new array (count_arr) with length (max + 1) and all elements set to 0
         - Each index corresponds the the possible values that may be in the input array
     - Count the frequency of each value in input_arr and record it in its respective index in count_arr
-    - 
-
-
+    - Calculate the cumulative sum (index i + index i - 1) for every elemet in count_arr beginning at index 1
+    - Create output_arr of size n which will be the returned array of the sorted elements
+    - Traverse inputArray[] in reverse order and update:
+        - output_arr[ count_arr[ input_arr[i] ] – 1] = input_arr[i]
+        - count_arr[ input_arr[i] ] = count_arr[ input_arr[i] ]- – 
+    - Return output_arr
 
 Time Complexity: * N = input_arr size, M = count_arr size
     - Best Case: Omega( M + N )
@@ -23,7 +25,7 @@ Comparison to Bucket Sort
     - Counting only works with positive integers
 
 Ultimately, the superior algorithm depends on the situation
-    - Use counting sort for discrete integers with a limited range.
+    - Use counting sort for discrete integers with a small range.
     - Use bucket sort when you have a broader range of values, especially with real numbers, and if the data is uniformly distributed.
 
 '''
