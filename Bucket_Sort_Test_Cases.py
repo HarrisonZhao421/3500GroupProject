@@ -39,9 +39,9 @@ def ClusteredList(size, ran, fac = .1):
     return lst
         
 def ExecTime(lst, func):
-    start = time.time()
+    start = time.perf_counter()
     func(lst)
-    end = time.time()
+    end = time.perf_counter()
     return (end-start) * 10**3
 
 def Clear(lst):
@@ -157,15 +157,7 @@ if __name__ == "__main__":
     pltlst = [b_x, b_y, r_x, r_y, c_x, c_y]
 
     UniformLowTest(pltlst)
-    #UniformHighTest(pltlst)
-    #NonUniformHighTest(pltlst)
-    #NonUniformLowTest(pltlst)
-    #ClusterTest(pltlst)
-    
-    
-
-
-
-    
-        
-        
+    UniformHighTest(pltlst)
+    NonUniformHighTest(pltlst)
+    NonUniformLowTest(pltlst)
+    ClusterTest(pltlst)
