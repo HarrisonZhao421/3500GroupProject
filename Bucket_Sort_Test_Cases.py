@@ -47,23 +47,21 @@ def ExecTime(lst, func):
 def Clear(lst):
     for item in lst: item.clear()
 
-def MultTests(pltlst):
+def UniformHighTest(pltlst):
     #Test Uniform List with low range
     b_x = pltlst[0] ; b_y = pltlst[1] ; r_x = pltlst[2] ; r_y = pltlst[3] ; c_x = pltlst[4] ; c_y = pltlst[5]
 
     for x in range(1000, 50000, 1000):
-        #highlst = ClusteredList(x, 10, .5)
-        #lowlst = ClusteredList(x, 1000000, .5)
-        highlst = ClusteredList(x, 10000, .95)
-        lowlst = ClusteredList(x, 10000, .5)
+        highlst = ClusteredList(10000, x, .5)
         b_x.append(x) ; b_y.append( ExecTime(highlst.copy(), B) )
-        r_x.append(x) ; r_y.append( ExecTime(lowlst.copy(), B) )
-        lowlst.clear()
+        r_x.append(x) ; r_y.append( ExecTime(highlst.copy(), R) )
+        c_x.append(x) ; c_y.append( ExecTime(highlst.copy(), C) )
         highlst.clear()
     plt_1 = plt.figure(figsize=(14, 9))
-    plt.title("Clustered List Bucket Sort") ; plt.xlabel("Size of List") ;plt.ylabel("Time (ms)")
-    plt.scatter(b_x, b_y, label = "NonUniform", s=5, marker="D")
-    plt.scatter(r_x, r_y, label = "Uniform", s=8, marker='v')
+    plt.title("Uniform List W/ High Range Time Complexity") ; plt.xlabel("Range") ;plt.ylabel("Time (ms)")
+    plt.scatter(b_x, b_y, label = "Bucket", s=5, marker="D")
+    plt.scatter(r_x, r_y, label = "Radix", s=8, marker='v')
+    plt.scatter(c_x, c_y, label = "Counting", s=8, marker='x')
     plt.legend() ; plt.show()
     Clear(pltlst)
 
@@ -85,23 +83,6 @@ def UniformLowTest(pltlst):
     plt.legend() ; plt.show()
     Clear(pltlst)
 
-def UniformHighTest(pltlst):
-    #Test Uniform List with High Range
-    b_x = pltlst[0] ; b_y = pltlst[1] ; r_x = pltlst[2] ; r_y = pltlst[3] ; c_x = pltlst[4] ; c_y = pltlst[5]
-    sz = 1000
-    for x in range(1, 1000, 9):
-        lst = GenUniformList(sz, 1, x)
-        b_x.append(x*sz) ; b_y.append( ExecTime(lst.copy(), B) )
-        r_x.append(x*sz) ; r_y.append( ExecTime(lst.copy(), R) )
-        c_x.append(x*sz) ; c_y.append( ExecTime(lst.copy(), C) )
-        lst.clear()
-    plt_2 = plt.figure(figsize=(14, 9))
-    plt.title("Uniform List W/ High Range Time Complexity") ; plt.xlabel("Range") ;plt.ylabel("Time (ms)")
-    plt.scatter(b_x, b_y, label = "Bucket", s=5, marker='D')
-    plt.scatter(r_x, r_y, label = "Radix", s=8, marker='v')
-    plt.scatter(c_x, c_y, label = "Counting", s=8, marker='x')
-    plt.legend() ; plt.show()
-    Clear(pltlst)
 
 def NonUniformLowTest(pltlst):
     #Test NonUniform List with High Range
@@ -159,9 +140,10 @@ def ClusterTest(pltlst):
 if __name__ == "__main__":
     b_x = list() ; b_y = list() ; r_x = list() ; r_y = [] ; c_x = [] ; c_y = list()
     pltlst = [b_x, b_y, r_x, r_y, c_x, c_y]
-    #MultTests(pltlst)
+
     UniformLowTest(pltlst)
     UniformHighTest(pltlst)
     NonUniformHighTest(pltlst)
     NonUniformLowTest(pltlst)
     ClusterTest(pltlst)
+    
